@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script language="JavaScript">
+    function myFunction(str ,len) {
+        var s= str.length;
+        for(var i=0;i<len-s;i++) {
+            str ="0" + str;
+        }
+        return str;
+    }
+    alert(myFunction("8",4));
+
+</script>
+
+</body>
+</html>
