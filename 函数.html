@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function multiply(num1,num2) {
+            var total=num1*num2;
+            alert(total);
+        }
+        multiply(10,2);
+
+        /*用var关键字明确的在为在函数中使用的变量设定一个作用域
+        如果用var声明了变量 这个变量就视为局部变量 只能存在于函数的上下文中
+        */
+
+        /*如果没有使用var 视为全局变量 如果脚本里已经存在一个与之同名的变量 这个函数将覆盖现有变量的值*/
+
+        //eg：
+        function square(num) {
+            var total=num*num;
+            return total;
+        }
+        total=50;
+        var number=square(20);
+        alert(total);
+
+        /*function square(num) {
+            total=num*num;
+            return total;
+        }
+         var total=50;
+        var number=square(20);
+        alert(total);*/
+    </script>
+</head>
+<body>
+
+</body>
+</html>
