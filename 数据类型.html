@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var str= "twenty";    //字符串可以用双引号和单引号
+        var str = 'twenty';
+        var str='don \'t ask';   //嵌套在单引号中的单引号必须用转义字符
+        alert(str);
+        alert(str);
+
+//        **************字符串结束*****************
+        var age = 20;
+        alert(age);
+        var b=-233333333;
+        alert(b);
+//        **************数值结束*******************
+        var c=true;
+        alert(c);
+//        *************布尔型结束******************
+        var d=Array(4);
+         /*在js中数组要用关键字Array声明 声明数组的同时 可以对这个数组的长度作出规定*/
+        var e=Array(); /*在不知道具体存储量时 也可以不设置*/
+
+
+        var f=Array(4);   //填充数组
+        f[0]="a";
+        f[1]="b";
+        f[2]="c";  //数字亦可以 具体看是什么数组
+        f[3]="d";
+
+        var f=Array("a","b","c","d");
+        var d=["0","1","2","3"];
+
+        var g=Array("a",1,false);
+        //在为新元素创建下标时 不必局限于数字 数组下标可以是字符串
+
+        /*关联数组*/
+
+        var h=Array();
+        h["name"]="ljs";
+        h["age"]=20;
+        h["woman?"]="false";  //提高可读性
+
+
+        var h=Array();
+        h["name"]="ljs";
+        h["age"]=20;
+        h["woman?"]="false";
+        var i=Array();
+        i[0]=h;
+        //i[0]["name"]:ljs;
+        //i[0]["age"]:20
+
+//*******************数组结束*****************
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
