@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <ul id="ul1">
+        <li class="aa ff">items1</li>   /*
+                                            aa ff 与 aaff 不同 aaff问题用正则表达式
+                                        */
+        <li class="aa cc">items2</li>
+        <li class="aa">items3</li>
+    </ul>
+
+    <ul id="ul2">
+        <li>items4</li>
+        <li class="aa">items5</li>
+        <li>items6</li>
+    </ul>
+    <p class="aa">ppppppppp</p>
+    <script>
+        var t=document.getElementById("ul2");
+        function getElementsByClassName(className , tag , context ) {
+
+            tag=tag||"*";
+            /*
+            if(tag==undefined) {
+                    tag="*";
+            */
+            context=context||document;
+            var result=[];
+
+                var link=context.getElementsByTagName(tag);
+                for(var i=0;i<link.length;i++) {
+                    if(link[i].className.indexOf(className)!=-1) {
+                        result.push(link[i]);
+                    }
+                }
+                return result;
+        }
+        var dom=getElementsByClassName("aa","li",t);
+        for(var i=0;i<dom.length;i++) {
+            dom[i].style.background="red";
+        }
+    </script>
+</body>
+</html>
