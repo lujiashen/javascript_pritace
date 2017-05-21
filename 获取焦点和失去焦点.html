@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #text-name {
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    用户名：<input type="text" id="text-name" value="请输入用户名"/>
+
+    <script>
+        var a=document.getElementById("text-name");
+        a.onfocus=function() {
+            if(this.value=="请输入用户名") {             /*输入信息 失去焦点 再获取焦点
+                                                                不清空里面的值
+                                                                如果里面的内容是这个就清空
+                                                            如果不是什么也不做*/
+                this.value="";
+            }
+
+
+        };
+        a.onblur=function() {
+            if(this.value=="") {               /*
+                                                    如果失去焦点 文本框里有值 据改变字体颜色 如果是这个就恢复浅色
+
+
+                                                                                */
+                this.value="请输入用户名";
+                a.style.color="#ccc";
+            }
+            else {
+                a.style.color="#000";
+            }
+
+        };
+    </script>
+</body>
+</html>
