@@ -15,7 +15,7 @@
         #context-menu {
             width: 200px;
             border: 1px solid #000;
-            position: absolute;
+            position: absolute;                     /*绝对定位 important*/
         }
         #context-menu li {
               height: 25px;
@@ -40,16 +40,16 @@
 
     <script>
         document.oncontextmenu=function (e) {
-            e=e||window.event;
+            e=e||window.event;                /*浏览器兼容性问题 */
             var d=document.getElementById("context-menu");
-            if(d) {
-                document.body.removeChild(d);
+                if(d) {
+                    document.body.removeChild(d);
             }
-           var oUl= document.createElement("ul");
-            oUl.id="context-menu";
+           var oUl= document.createElement("ul");  /*创建这个ul*/
+            oUl.id="context-menu";                     /*创建ul id 鼠标x轴 鼠标y轴*/
             oUl.style.left= e.clientX+'px';
             oUl.style.top= e.clientY+'px';
-            for(var i=1;i<=3;i++) {
+            for(var i=1;i<=3;i++) {                       /*动态创建li*/
                 var oLi=document.createElement("li");
                 oUl.appendChild(oLi);
                 oLi.innerHTML="菜单"+i;
