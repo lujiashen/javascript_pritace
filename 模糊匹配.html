@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #contact {
+            width: 300px;
+            margin: 200px auto;
+            /*background: #ccc;*/
+
+        }
+        #text {
+            width: 298px;
+
+            height: 20px;
+        }
+        #line {
+            list-style: none;
+            display: none;
+            border: 1px solid #333;
+        }
+        #line li {
+            width: 298px;
+            height: 30px;
+
+        }
+        #line li:hover {
+            cursor: pointer;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="contact">
+        <input id="text" type="text" />
+        <ul id="line">
+
+        </ul>
+    </div>
+
+    <script>
+        var links=["iphone4","iphone5","iphone6","sanxing"];
+        var oT=document.getElementById("text");
+        var oL=document.getElementById("line");
+        oT.onkeyup=function (e) {
+           if(e.which==38 || e.which==40|| e.which==13) {
+               return;
+           }
+            else {
+               if(this.value!="") {                   /*解决输入框没有信息隐藏搜索栏提示*/
+                   oL.innerHTML="";                  /*清空ul*/
+                   for(var i=0;i<links.length;i++) {
+                       if(links[i].indexOf(this.value)!=-1) {
+                           var oLi=document.createElement('li');   /*动态创建li*/
+                           oLi.innerHTML=links[i];
+                           oLi.onclick=function() {         /*动态绑定事件  直接将this下对象的文本赋给文本框 */
+                               oT.value= this.innerHTML;
+                               oL.style.display="none";
+                           };
+                           oL.appendChild(oLi);
+                       }
+
+                   }
+
+                   if(oL.children.length>0) {
+                       oL.style.display="block";
+                   }
+                   else {
+                       oL.style.display="none";
+                   }
+               }
+               else {
+                   oL.innerHTML="";
+                   oL.style.display="none";
+               }
+           }
+        };
+
+        var index=-1;
+        oT.onkeydown=function (e) {
+            if(e.which==38|| e.which==40) {
+                if(e.which==40) {
+                    for(var i=0;i<oL.children.length;i++) {
+                        oL.children[i].style.background="transparent";
+                    }
+                    index++;
+
+                    if(index==oL.children.length) {
+                        index=0;
+                    }
+                    oL.children[index].style.background="#ccc"; /*如果放在if语句前 index大于长度 数组下标越界*/
+                }
+
+            }
+            else if(e.which==13) {
+                oT.value= oL.children[index].innerHTML;
+                oL.style.display="none";
+                index=-1;
+            }
+        };
+
+
+
+    </script>
+</body>
+</html>
