@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+        ul {
+            list-style: none;
+        }
+        #context-menu {
+            width: 200px;
+            border: 1px solid #000;
+            position: absolute;
+        }
+        #context-menu li {
+              height: 25px;
+              line-height: 25px;
+              border-bottom: 1px dotted #ccc;
+            cursor:pointer;
+          }
+        #context-menu li:hover {
+            background: #ccc;
+            height: 25px;
+            line-height: 25px;
+            border-bottom: 1px dotted #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!--<ul id="context-menu">-->
+        <!--<li>菜单 1</li>-->
+        <!--<li>菜单 2</li>-->
+        <!--<li>菜单 3</li>-->
+    <!--</ul>-->
+
+    <script>
+        document.oncontextmenu=function (e) {
+            e=e||window.event;
+            var d=document.getElementById("context-menu");
+            if(d) {
+                document.body.removeChild(d);
+            }
+           var oUl= document.createElement("ul");
+            oUl.id="context-menu";
+            oUl.style.left= e.clientX+'px';
+            oUl.style.top= e.clientY+'px';
+            for(var i=1;i<=3;i++) {
+                var oLi=document.createElement("li");
+                oUl.appendChild(oLi);
+                oLi.innerHTML="菜单"+i;
+            }
+
+            document.body.appendChild(oUl);
+
+            return false;
+        }
+
+    </script>
+</body>
+</html>
