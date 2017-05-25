@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #bh {
+            border: 1px solid red;
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;;
+        }
+        #contact {
+            height: 30px;
+
+        }
+        #contact li {
+            list-style: none;
+            float: left;
+            width: 80px;
+            height: 30px;
+           background: gray;
+            margin-right: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #contact .select {
+           background: yellow;
+
+        }
+        #num .select {
+            display: block;
+        }
+        li {
+            list-style: none;
+        }
+    #num li {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+
+    <div id="bh">
+       <ul id="contact">
+           <li class="select">html</li>
+           <li >css</li>
+           <li >javascript</li>
+       </ul>
+        <div id="dd">
+            <ul id="num">
+                <li class="select">111</li>
+                <li  >222</li>
+                <li >333</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+
+     var c=document.getElementById("contact");
+        var t= c.getElementsByTagName("li");
+     var n=document.getElementById("num");
+     var l= n.getElementsByTagName("li");
+        for(var i=0;i< t.length;i++) {
+            t[i].xx=i;
+            t[i].onclick=function () {
+                for(var i=0;i<t.length;i++) {
+                    t[i].className="";
+                    l[i].className="";
+                }
+                this.className="select";
+                l[this.xx].className="select";
+
+            };
+
+        }
+
+    </script>
+</body>
+</html>
