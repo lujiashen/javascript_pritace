@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding:0;
+        }
+        #box {
+            width: 1067px;
+            height: 800px;
+            border: 5px solid black;
+            position: relative;
+            margin: 0 auto;
+        }
+        ul {
+
+            list-style: none;
+        }
+       #num {
+           position: absolute;
+           right: 10px;
+           bottom: 10px;
+       }
+        #num li {
+            height: 40px;
+            width: 40px;
+            border: 1px solid black;
+            float: left;
+            margin-right:10px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            background: black;
+            color: red;
+        }
+
+        #gallery img {
+            display: none;
+        }
+        #gallery .select {
+            display: block;
+        }
+        #num .select {
+             background: yellow;
+         }
+
+        #left {
+            height: 60px;
+            width: 60px;
+            background: transparent;
+            text-align: center;
+            line-height: 60px;
+            font-size: 50px;
+            color:red;
+            position: absolute;
+            left: 10px;
+            bottom: 370px;
+            cursor: pointer;
+
+        }
+        #right {
+            height: 60px;
+            width: 60px;
+            background: transparent;
+            text-align: center;
+            line-height: 60px;
+            font-size: 50px;
+            color:red;
+            position: absolute;
+            right: 10px;
+            bottom: 370px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+        <div id="box">
+            <ul id="gallery">
+                <li><img class="select" src="111.jpg" alt=""/></li>
+                <li><img src="222.jpg" alt=""/></li>
+                <li><img src="333.jpg" alt=""/></li>
+                <li><img src="444.jpg" alt=""/></li>
+            </ul>
+            <ul id="num">
+                <li class="select">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+            <ul id="signal">
+                <li id="left"> <strong>&lt;</strong></li>
+                <li id="right"><strong>&gt;</strong></li>
+
+            </ul>
+        </div>
+
+        <script>
+            var b=document.getElementById("box");
+            var g=document.getElementById("gallery");
+            var h= g.getElementsByTagName("img");
+            var n=document.getElementById("num");
+            var arr= n.getElementsByTagName("li");
+            var sign=document.getElementById("signal");
+            var le=document.getElementById("left");
+            var ri=document.getElementById("right");
+            var index=0;
+            for(var i=0;i< arr.length;i++) {
+                /*第一个for循环下的 i 用不了 需要一个变量存着 arr数组里装的是对象的集合 （对象.属性=i；）*/
+                arr[i].xx = i;
+                arr[i].onmouseover = function () {
+                    index=this.xx;           /*this对象没法使用 所以把这个值赋给 index*/
+                    for (var i = 0; i < arr.length; i++) {   /*底下的数字*/
+                        arr[i].className = "";
+                    }
+                    this.className = "select";
+                    /*--------------------------*/
+                    for (var j = 0; j < h.length; j++) {    /*图片*/
+                        h[j].className = "";
+                    }
+                    h[this.xx].className = "select";
+                };
+            }
+            function play() {
+                timer=setInterval(function() {
+                    index++;            /*ri.onclick();*/
+                    if(index== h.length) {
+                        index=0;
+                    }
+                    change();
+                },1000);
+            }
+            play();
+            function change() {
+                for(var i=0;i<h.length;i++) {
+                    h[i].className="";
+                    arr[i].className="";
+                }
+                arr[index].className="select";
+                h[index].className="select";
+            }
+
+            le.onclick=ri.onclick=function() {
+                if(this==ri) {
+
+                    index++;
+                    if(index== h.length) {
+                        index=0;
+                    }
+                    change();
+                }
+                else {
+                    index--;
+                    if(index==-1) {
+                        index=h.length-1;
+                    }
+                    change();
+                }
+
+            };
+            b.onmouseover=function () {
+                clearInterval(timer);
+            };
+            b.onmouseout=function () {
+                play();
+            }
+        </script>
+</body>
+</html>
