@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #div1 {
+            width: 200px;
+            height: 300px;
+            background:#ccc;
+            position: absolute;
+            top: 100px;
+            left: -200px;
+        }
+        #div2 {
+            width: 30px;
+            height: 100px;
+            background: red;
+            line-height: 30px;
+            position: absolute;
+            top: 100px;
+            right: -30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">分享到</div>
+    </div>
+    <script>
+        var d1=document.getElementById("div1");
+        var d2=document.getElementById("div2");
+        var timer;
+        function move(target , elem) {
+            clearInterval(timer);
+            timer=setInterval(function (){
+                    var speed=target-elem.offsetLeft >0 ? 10:-10;
+                    speed=speed>0?Math.ceil(speed):Math.floor(speed);
+                    elem.style.left=elem.offsetLeft+speed+"px";
+                    if(Math.abs(target-elem.offsetLeft) <=Math.abs(speed)) {
+                        clearInterval(timer);
+                        elem.style.left=target+"px";
+                    }
+                console.log(Math.random());
+            },30)
+        }
+        d1.onmouseover=function() {
+          move(0,d1);
+        };
+        d1.onmouseout=function() {
+          move(-200,d1);
+        };
+    </script>
+</body>
+</html>
