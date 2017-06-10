@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        div {
+            width: 100px;
+            height: 50px;
+            background: red;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+
+    <script>
+        /*这一个timer 三个div共享 相互干扰*/
+
+        var aDiv=document.getElementsByTagName("div");
+        for(var i=0;i<aDiv.length;i++) {
+            aDiv[i].timmer=null;
+            aDiv[i].onmouseover=function() {
+//
+                clearInterval(this.timer);
+                var that=this;
+                 this.timer=setInterval(function(){
+
+                    if(that.offsetWidth==300) {
+                        clearInterval(timer);
+                    }
+                     else {
+                        that.style.width=that.offsetWidth+10+"px";
+                    }
+                 },30)
+
+            };
+            aDiv[i].onmouseout=function() {
+                clearInterval(this.timer);
+                var that=this;
+                this.timer=setInterval(function(){
+
+                    if(that.offsetWidth==100) {
+                        clearInterval(timer);
+                    }
+                    else {
+                        that.style.width=that.offsetWidth-10+"px";
+                    }
+                },30)
+            };
+        }
+        function move(target , speed) {
+
+        }
+    </script>
+</body>
+</html>
