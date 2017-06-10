@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #btn {
+            height: 20px;
+            background:#ccc;
+        }
+        #div1 {
+            width: 200px;
+            height: 100px;
+            background: red;
+            margin-top: 20px;
+            position: absolute;
+        }
+        #line {
+            height: 300px;
+            background: black;
+            width: 1px;
+            position: absolute;
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">移动</button>
+    <div id="line"></div>
+    <div id="div1"></div>
+
+    <script>
+        var obtn=document.getElementById("btn");
+        var oDiv=document.getElementById("div1");
+        obtn.onclick=function() {
+           move(300 ,8);
+        };
+        function move(target ,speed) {
+             speed=target-oDiv.offsetLeft>0 ? speed:-speed;
+            var timer=setInterval(function(){
+                speed=(target-oDiv.offsetLeft)*0.6;
+                oDiv.style.left=oDiv.offsetLeft+speed+'px';
+//                if(Math.abs(target-oDiv.offsetLeft)<=Math.abs(speed))
+                if(oDiv.offsetLeft==target)
+                {
+                    clearInterval(timer);
+                    oDiv.style.left=target+"px";
+                }
+                console.log(oDiv.offsetLeft);
+            },50)
+        }
+    </script>
+</body>
+</html>
