@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #div1 {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="div1"></div>
+    <script>
+    /*不是内联样式得到元素的属性 currentStyle getComputedStyle（elem ，false）*/
+        var oDiv=document.getElementById("div1");
+    oDiv.timer=null;
+        oDiv.onmouseover=function() {
+              move(oDiv ,"top" ,500);
+
+        };
+        function move(elem ,attr ,target) {
+            clearInterval(elem.timer);
+           elem.timer=setInterval(function(){
+                var curr=parseInt(getStyle(elem,attr));
+                var speed=(target-curr)/8;
+                speed=speed>0?Math.ceil(speed):Math.floor(speed);
+               if(curr==target) {
+                   clearInterval(elem.timer);
+               }
+               else {
+                   elem.style[attr]=curr+speed+"px";
+               }
+            },30);
+
+        }
+        function getStyle(elem , attr) {
+            if(elem.currentStyle) {
+                return elem.currentStyle[attr];
+            }
+            else {
+                return getComputedStyle(elem , false)[attr];
+            }
+        }
+    </script>
+</body>
+</html>
