@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left: 0;
+        }
+        #div1 {
+            top: 0;
+        }
+        #div2 {
+            top: 220px;
+            opacity: 0.3;
+        }
+        #line {
+            width: 1px;
+            height: 500px;
+            background: black;
+            position: absolute;
+            left: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="line"></div>
+
+    <script>
+        var oDiv1=document.getElementById("div1");
+        var oDiv2=document.getElementById("div2");
+        oDiv1.timer=null;
+        oDiv1.onmouseover=function() {
+            animate(oDiv1,"left",500);
+        };
+        oDiv2.onmouseover=function() {
+            animate(oDiv2,"opacity",100);
+        };
+
+        function animate(elem ,attr ,target) {
+            clearInterval(elem.timer);
+            elem.timer=setInterval(function(){
+                var curr=parseInt(getStyle(elem,attr));
+                if(attr=="opacity") {
+                    curr=getStyle(elem,attr)*100;
+                }
+                var speed=(target-curr)/8;
+                speed=speed>0?Math.ceil(speed):Math.floor(speed);
+                if(curr==target) {
+                    clearInterval(elem.timer);
+                }
+                else {
+                    if(attr=="opacity") {
+                        elem.style.opacity=(curr+speed)/100;
+                    }
+                    else{
+                        elem.style[attr]=curr+speed+"px";
+                    }
+
+                }
+                console.log(curr);
+            },30)
+        }
+        function getStyle(elem ,attr) {
+            if(elem.currentStyle) {
+                return elem.currentStyle[attr];
+            }
+            else {
+                return getComputedStyle(elem,false)[attr];
+            }
+        }
+    </script>
+</body>
+</html>
